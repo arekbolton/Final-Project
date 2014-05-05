@@ -19,13 +19,13 @@
 
 @property (strong, nonatomic) IBOutletCollection(FPButton) NSArray *slidingCell;
 
-@property (strong, nonatomic) NSArray *buttonCells;
-
 
 - (IBAction)hit:(id)sender;
 
 - (IBAction)reset:(id)sender;
 
 - (IBAction)solve:(id)sender;
+
+- (void) randomize;
 
 @end

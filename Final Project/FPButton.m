@@ -12,8 +12,8 @@
 
 -(void) setDefaultHome:(CGFloat) x yVal:(CGFloat)y
 {
-    _homeX = x;
-    _homeY = y;
+    _originalX = x;
+    _originalY = y;
 }
 
 

@@ -19,84 +19,11 @@
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view, typically from a nib.
-    FPButton *b;
+    //FPButton *b;
     moveCounter = 0;
     
     [_scoreLabel setText:[NSString stringWithFormat:@"%i", moveCounter]];
-    
-    for(int j = 0; j<16; j++)
-    {
-        b = [_slidingCell objectAtIndex:j];
-        
-        if (b.tag == 1)
-        {
-            [b setDefaultHome:(CGFloat)50.0 yVal:(CGFloat)50.0];
-        }
-        else if (b.tag == 2)
-        {
-            [b setDefaultHome:(CGFloat)100.0 yVal:(CGFloat)50.0];
-        }
-        else if (b.tag == 3)
-        {
-            [b setDefaultHome:(CGFloat)150.0 yVal:(CGFloat)50.0];
-        }
-        else if (b.tag == 4)
-        {
-            [b setDefaultHome:(CGFloat)200.0 yVal:(CGFloat)50.0];
-        }
-        else if (b.tag == 5)
-        {
-            [b setDefaultHome:(CGFloat)50.0 yVal:(CGFloat)100.0];
-        }
-        else if (b.tag == 6)
-        {
-            [b setDefaultHome:(CGFloat)100.0 yVal:(CGFloat)100.0];
-        }
-        else if (b.tag == 7)
-        {
-            [b setDefaultHome:(CGFloat)150.0 yVal:(CGFloat)100.0];
-        }
-        else if (b.tag == 8)
-        {
-            [b setDefaultHome:(CGFloat)200.0 yVal:(CGFloat)100.0];
-        }
-        else if (b.tag == 9)
-        {
-            [b setDefaultHome:(CGFloat)50.0 yVal:(CGFloat)150.0];
-        }
-        else if (b.tag == 10)
-        {
-            [b setDefaultHome:(CGFloat)100.0 yVal:(CGFloat)150.0];
-        }
-        else if (b.tag == 11)
-        {
-            [b setDefaultHome:(CGFloat)150.0 yVal:(CGFloat)150.0];
-        }
-        else if (b.tag == 12)
-        {
-            [b setDefaultHome:(CGFloat)200.0 yVal:(CGFloat)150.0];
-        }
-        else if (b.tag == 13)
-        {
-            [b setDefaultHome:(CGFloat)50.0 yVal:(CGFloat)200.0];
-        }
-        else if (b.tag == 14)
-        {
-            [b setDefaultHome:(CGFloat)100.0 yVal:(CGFloat)200.0];
-        }
-        else if (b.tag == 15)
-        {
-            [b setDefaultHome:(CGFloat)150.0 yVal:(CGFloat)200.0];
-        }
-        else if (b.tag == 16)
-        {
-            [b setDefaultHome:(CGFloat)200.0 yVal:(CGFloat)200.0];
-        }
-        
-        
-        
-        
-    }
+    [self randomize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,22 +34,23 @@
 
 - (IBAction)hit:(FPButton *)sender{
     
-    FPButton *empBtn = [_slidingCell objectAtIndex:15];
+    FPButton *empBtn;
     BOOL test = false;
-    int newX = 0;
-    int newY = 0;
-    
+    float x = 0;
+    float y = 0;
+    empBtn = [_slidingCell objectAtIndex:15];
     test = [FPButtonModel canMove:sender.frame.origin.x :sender.frame.origin.y :empBtn.frame.origin.x :empBtn.frame.origin.y];
     
-    newX = (int) empBtn.frame.origin.x;
-    newY = (int) empBtn.frame.origin.y;
+    x = sender.frame.origin.x;
+    y = sender.frame.origin.y;
     
     if (test == true){
         
         [UIView animateWithDuration:.75 animations:^{
             sender.frame = CGRectMake(empBtn.frame.origin.x, empBtn.frame.origin.y, sender.frame.size.width, sender.frame.size.height);
+            empBtn.frame = CGRectMake(x, y, empBtn.frame.size.width, empBtn.frame.size.height);
         }];
-        empBtn.frame = CGRectMake(newX, newY, empBtn.frame.size.width, empBtn.frame.size.height);
+        //empBtn.frame = CGRectMake(newX, newY, empBtn.frame.size.width, empBtn.frame.size.height);
         
         moveCounter++;
         [_scoreLabel setText:[NSString stringWithFormat:@"%i", moveCounter]];
@@ -133,7 +61,113 @@
 }
 
 - (IBAction)reset:(id)sender {
+    FPButton *btn;
+    for (int j = 0; j < 16; j++) {
+        btn = [_slidingCell objectAtIndex:j];
+        
+        if (btn.tag == 1)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(50.0, 50.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 2)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(100.0, 50.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 3)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(150.0, 50.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 4)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(200.0, 50.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 5)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(50.0, 100.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 6)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(100.0, 100.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 7)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(150.0, 100.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 8)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(200.0, 100.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 9)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(50.0, 150.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 10)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(100.0, 150.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 11)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(150.0, 150.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 12)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(200.0, 150.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 13)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(50.0, 200.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 14)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(100.0, 200.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 15)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(150.0, 200.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else if (btn.tag == 16)
+        {
+            [UIView animateWithDuration:.1 animations:^{
+                btn.frame = CGRectMake(200.0, 200.0, btn.frame.size.width, btn.frame.size.height);
+            }];
+        }
+        else{}
+    }
     
+    
+    moveCounter = 0;
+    [_scoreLabel setText:[NSString stringWithFormat:@"%i", moveCounter]];
+    [self randomize];
 }
 
 - (IBAction)solve:(FPButton*)sender {
@@ -144,104 +178,131 @@
         
         if (btn.tag == 1)
         {
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(50.0, 50.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 2)
         {
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(100.0, 50.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 3)
         {
-            //[b setDefaultHome:(CGFloat)150.0 yVal:(CGFloat)50.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(150.0, 50.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 4)
         {
-            //[b setDefaultHome:(CGFloat)200.0 yVal:(CGFloat)50.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(200.0, 50.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 5)
         {
-            //[b setDefaultHome:(CGFloat)50.0 yVal:(CGFloat)100.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(50.0, 100.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 6)
         {
-            //[b setDefaultHome:(CGFloat)100.0 yVal:(CGFloat)100.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(100.0, 100.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 7)
         {
-            //[b setDefaultHome:(CGFloat)150.0 yVal:(CGFloat)100.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(150.0, 100.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 8)
         {
-            //[b setDefaultHome:(CGFloat)200.0 yVal:(CGFloat)100.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                 btn.frame = CGRectMake(200.0, 100.0, btn.frame.size.width, btn.frame.size.height);
+             }];
         }
         else if (btn.tag == 9)
         {
-            //[b setDefaultHome:(CGFloat)50.0 yVal:(CGFloat)150.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(50.0, 150.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 10)
         {
-            //[b setDefaultHome:(CGFloat)100.0 yVal:(CGFloat)150.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(100.0, 150.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 11)
         {
-            //[b setDefaultHome:(CGFloat)150.0 yVal:(CGFloat)150.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(150.0, 150.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 12)
         {
-            //[b setDefaultHome:(CGFloat)200.0 yVal:(CGFloat)150.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(200.0, 150.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 13)
         {
-            //[b setDefaultHome:(CGFloat)50.0 yVal:(CGFloat)200.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(50.0, 200.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 14)
         {
-            //[b setDefaultHome:(CGFloat)100.0 yVal:(CGFloat)200.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(100.0, 200.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 15)
         {
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(150.0, 200.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else if (btn.tag == 16)
         {
-            //[b setDefaultHome:(CGFloat)200.0 yVal:(CGFloat)200.0];
-            btn.homeX = 50.0;
-            btn.homeY = 50.0;
+            [UIView animateWithDuration:.75 animations:^{
+                btn.frame = CGRectMake(200.0, 200.0, btn.frame.size.width, btn.frame.size.height);
+            }];
         }
         else{}
+    }
+    
+}
+
+-(void) randomize
+{
+    int r = 0;
+    FPButton *btnOne;
+    FPButton *btnTwo;
+    float x, y;
+    x = 0.0;
+    y = 0.0;
+    for(int k = 0; k<5; k++) {
         
+    for(int j = 0; j<16; j++) {
+        r =arc4random() % 15;
+        //seting up the positional exchange
+        btnOne = [_slidingCell objectAtIndex:j];
+        btnTwo = [_slidingCell objectAtIndex:r];
+        x = btnOne.frame.origin.x;
+        y = btnOne.frame.origin.y;
         
-        [UIView animateWithDuration:.75 animations:^{
-            btn.frame = CGRectMake(btn.homeX, btn.homeY, btn.frame.size.width, btn.frame.size.height);
+        //moveing the cells here
+        [UIView animateWithDuration:.25 animations:^{
+            btnOne.frame = CGRectMake(btnTwo.frame.origin.x, btnTwo.frame.origin.y, btnOne.frame.size.width, btnOne.frame.size.height);
+            btnTwo.frame = CGRectMake(x, y, btnTwo.frame.size.width, btnTwo.frame.size.width);
         }];
     }
+    }
+    
     
 }
 @end

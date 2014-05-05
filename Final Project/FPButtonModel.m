@@ -10,13 +10,13 @@
 
 @implementation FPButtonModel
 
-#pragma Motion Determinate
 
-+(BOOL) canMove : (int) xHit :(int) yHit :(int) xEmpty :(int) yEmpty
+
++(BOOL) canMove : (float) xHit :(float) yHit :(float) xEmpty :(float) yEmpty
 {
     BOOL xTest = false;
     BOOL yTest = false;
-
+    
     //test x coordinates
     if (xHit == xEmpty) {
         xTest = true;
@@ -35,6 +35,37 @@
     }
     else{}
     
+    //test the diagonals
+    //test the upper right diagonal
+    if (xHit == (xEmpty + 50) && yHit == (yEmpty + 50)) {
+        xTest = false;
+        yTest = false;
+        NSLog(@"upper right");
+    }
+    //test the lower right diagonal
+    else if (xHit == (xEmpty + 50) && yHit == (yEmpty - 50))
+    {
+        xTest = false;
+        yTest = false;
+        NSLog(@"lower right");
+    }
+    //test the upper left diagonal
+    else if (xHit == (xEmpty - 50) && yHit == (yEmpty + 50))
+    {
+        xTest = false;
+        yTest = false;
+        NSLog(@"lower right");
+    }
+    //test the lower left diagonal
+    else if (xHit == (xEmpty - 50) && yHit == (yEmpty - 50))
+    {
+        xTest = false;
+        yTest = false;
+        NSLog(@"lower left");
+    }
+    
+    
+    
     //determine if can move in any direction
     if (xTest == true && yTest == true) {
         return true;
@@ -42,18 +73,6 @@
     else{
         return false;
     }
-}
-
-+(int) findCell:(int)startX :(int)startY withArrayOfCells: (NSMutableArray*) cells
-{
-    /*
-    int j=0;
-    while (startX != [[cells objectAtIndex:j] getXPosition] && startY != [[cells objectAtIndex:j] getYPosition]) {
-        return j;
-    }
-    */
-    return 0;
-    
 }
 
 @end

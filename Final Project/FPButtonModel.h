@@ -10,8 +10,6 @@
 #import "FPButton.h"
 @interface FPButtonModel : NSObject
 
-+(BOOL) canMove : (int) xHit :(int) yHit : (int) xEmpty :(int) yEmpty;
-
-+(int) findCell: (int) startX : (int) startY withArrayOfCells: (NSMutableArray*) cells;
++(BOOL) canMove : (float) xHit :(float) yHit : (float) xEmpty :(float) yEmpty;
 
 @end

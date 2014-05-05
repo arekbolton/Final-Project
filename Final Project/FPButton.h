@@ -11,13 +11,9 @@
 
 @interface FPButton : UIButton
 
-@property (nonatomic) int rank;
+@property (nonatomic) CGFloat originalX;
 
-@property (nonatomic) CGFloat homeX;
-
-@property (nonatomic) CGFloat homeY;
-
-@property (nonatomic) BOOL empty;
+@property (nonatomic) CGFloat originalY;
 
 -(void) setDefaultHome:(CGFloat)x yVal:(CGFloat)y;
 
